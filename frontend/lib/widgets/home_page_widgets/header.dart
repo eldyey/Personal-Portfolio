@@ -5,22 +5,26 @@ class Header extends StatelessWidget {
   const Header({super.key});
 
   void downloadResume() {
-  final url = "assets/resume/Resume - L. Manzanero.pdf";
+    // FIX: ensures correct GitHub Pages base path is included
+    final url = Uri.base.resolve(
+      "assets/resume/Resume - L. Manzanero.pdf",
+    ).toString();
 
-  final anchor = html.AnchorElement(href: url)
-    ..setAttribute("download", "L. Manzanero.pdf")
-    ..click();
-}
+    final anchor = html.AnchorElement(href: url)
+      ..setAttribute("download", "L. Manzanero.pdf")
+      ..click();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Center(
         child: Container(
-          width: 800, 
+          width: 800,
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(15, 93, 94, 94),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(15, 93, 94, 94),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,34 +33,52 @@ class Header extends StatelessWidget {
                 'assets/images/profile.png',
                 height: 140,
               ),
-              SizedBox(width: 15,),
+
+              const SizedBox(width: 15),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                      Text('Lester Manzanero', style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight(600)
+                  const Text(
+                    'Lester Manzanero',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
                     ),
-                  ),     
-                  Row(
+                  ),
+
+                  const SizedBox(height: 5),
+
+                  const Row(
                     children: [
-                      Icon(Icons.location_on, color: Colors.red, size: 18,),
-                      Text('Laguna, Philippines', style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                      ),)
+                      Icon(Icons.location_on, color: Colors.red, size: 18),
+                      SizedBox(width: 5),
+                      Text(
+                        'Laguna, Philippines',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: 14,),
-                  Text('Front-End Web Developer', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontFamily: "Poppins",
-                  ),),
-                  SizedBox(height: 14,),
+
+                  const SizedBox(height: 14),
+
+                  const Text(
+                    'Front-End Web Developer',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+
+                  const SizedBox(height: 14),
+
                   Row(
                     children: [
                       ElevatedButton.icon(
@@ -65,7 +87,10 @@ class Header extends StatelessWidget {
                         label: const Text('Resume'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                            vertical: 10,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),
@@ -80,7 +105,10 @@ class Header extends StatelessWidget {
                         icon: const Icon(Icons.message_outlined),
                         label: const Text('Send Message'),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal:15, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                            vertical: 10,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),
@@ -94,8 +122,16 @@ class Header extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
-                IconButton(onPressed: (){}, icon: Icon(Icons.light_mode_outlined, color: Colors.grey,))
+
+              const Spacer(),
+
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.light_mode_outlined,
+                  color: Colors.grey,
+                ),
+              ),
             ],
           ),
         ),
