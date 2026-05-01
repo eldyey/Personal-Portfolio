@@ -7,11 +7,11 @@ class Header extends StatelessWidget {
   void downloadResume() {
     // FIX: ensures correct GitHub Pages base path is included
     final url = Uri.base.resolve(
-      "assets/resume/Resume - L. Manzanero.pdf",
+      "assets/resume/L.Manzanero.pdf",
     ).toString();
 
     final anchor = html.AnchorElement(href: url)
-      ..setAttribute("download", "L. Manzanero.pdf")
+      ..setAttribute("download", "L.Manzanero.pdf")
       ..click();
   }
 
