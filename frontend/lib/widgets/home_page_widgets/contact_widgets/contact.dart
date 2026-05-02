@@ -71,7 +71,6 @@ class _ContactState extends State<Contact> {
     );
   }
 
- 
   Widget hoverLink(String text, String url) {
     bool isHovering = false;
 
@@ -188,13 +187,29 @@ class _ContactState extends State<Contact> {
     return null;
   }
 
+  // ✅ UPDATED EMAIL VALIDATION ONLY
   String? validateEmail(String? value) {
-    if (value == null || value.trim().isEmpty) return "Email is required";
+    if (value == null || value.trim().isEmpty) {
+      return "Email is required";
+    }
+
+    final email = value.trim();
+
+    final emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    if (!emailRegex.hasMatch(email)) {
+      return "Enter a valid email address";
+    }
+
     return null;
   }
 
   String? validateMessage(String? value) {
-    if (value == null || value.trim().isEmpty) return "Message cannot be empty";
+    if (value == null || value.trim().isEmpty) {
+      return "Message cannot be empty";
+    }
     return null;
   }
 
@@ -210,7 +225,6 @@ class _ContactState extends State<Contact> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Expanded(
               flex: 2,
               child: Form(
@@ -218,7 +232,6 @@ class _ContactState extends State<Contact> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     const Text(
                       "Get in Touch",
                       style: TextStyle(
@@ -228,7 +241,6 @@ class _ContactState extends State<Contact> {
                         fontFamily: "Poppins",
                       ),
                     ),
-
                     const Text(
                       'Feel free to reach out for collaborations',
                       style: TextStyle(
@@ -236,7 +248,6 @@ class _ContactState extends State<Contact> {
                         fontFamily: "Poppins",
                       ),
                     ),
-
                     const SizedBox(height: 20),
 
                     Row(
@@ -300,9 +311,7 @@ class _ContactState extends State<Contact> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   const SizedBox(height: 8),
-
                   const Text(
                     "Other Contact Info",
                     style: TextStyle(
@@ -312,7 +321,6 @@ class _ContactState extends State<Contact> {
                       fontFamily: "Poppins",
                     ),
                   ),
-
                   const Text(
                     'You can also find me on:',
                     style: TextStyle(
@@ -320,7 +328,6 @@ class _ContactState extends State<Contact> {
                       fontFamily: "Poppins",
                     ),
                   ),
-
                   const SizedBox(height: 20),
 
                   const Row(
