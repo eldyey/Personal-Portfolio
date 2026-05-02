@@ -20,11 +20,11 @@ class Header extends StatelessWidget {
       barrierColor: Colors.black,
       builder: (_) {
         return Dialog(
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(50, 0, 0, 0),
           insetPadding: EdgeInsets.zero,
           child: Stack(
             children: [
-              // IMAGE (zoomable)
+        
               Center(
                 child: InteractiveViewer(
                   child: Image.asset(
@@ -34,7 +34,6 @@ class Header extends StatelessWidget {
                 ),
               ),
 
-              // BACK BUTTON
               Positioned(
                 top: 20,
                 left: 20,
@@ -68,7 +67,6 @@ class Header extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // CLICKABLE IMAGE
               GestureDetector(
                 onTap: () => openImage(context),
                 child: MouseRegion(
