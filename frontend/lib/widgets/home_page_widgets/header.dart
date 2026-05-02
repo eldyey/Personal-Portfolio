@@ -14,6 +14,46 @@ class Header extends StatelessWidget {
       ..click();
   }
 
+  void openImage(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black,
+      builder: (_) {
+        return Dialog(
+          backgroundColor: Colors.black,
+          insetPadding: EdgeInsets.zero,
+          child: Stack(
+            children: [
+              // IMAGE (zoomable)
+              Center(
+                child: InteractiveViewer(
+                  child: Image.asset(
+                    'assets/images/profile1.jpg',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+
+              // BACK BUTTON
+              Positioned(
+                top: 20,
+                left: 20,
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 28,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,9 +68,16 @@ class Header extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/images/profile.png',
-                height: 140,
+              // CLICKABLE IMAGE
+              GestureDetector(
+                onTap: () => openImage(context),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Image.asset(
+                    'assets/images/profile1.jpg',
+                    height: 140,
+                  ),
+                ),
               ),
 
               const SizedBox(width: 15),
