@@ -5,7 +5,6 @@ class Header extends StatelessWidget {
   const Header({super.key});
 
   void downloadResume() {
-    // FIX: ensures correct GitHub Pages base path is included
     final url = Uri.base.resolve(
       "assets/resume/L.Manzanero.pdf",
     ).toString();

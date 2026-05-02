@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AboutSection extends StatelessWidget{
+  const AboutSection({super.key});
   @override
   Widget build(BuildContext context){
     return Center(
@@ -22,7 +23,8 @@ class AboutSection extends StatelessWidget{
               Text('Front-End Developer focused on building responsive and modern web applications\nusing Flutter and ReactJs and web technologies. Passionate about UI design,\nperformance, and user experience.', 
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: "Poppins"
+                fontFamily: "Poppins",
+                color: Colors.grey
               ),)
             ],
           ),
