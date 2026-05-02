@@ -75,8 +75,6 @@ class _ProjectSectionState extends State<ProjectSection> {
       }
     });
   }
-
-  // 🔥 FULLSCREEN IMAGE POPUP (ICON ONLY BACK BUTTON)
   void openImage(String imagePath) {
     showDialog(
       context: context,
@@ -95,7 +93,6 @@ class _ProjectSectionState extends State<ProjectSection> {
                 ),
               ),
 
-              // 🔙 ICON ONLY BACK BUTTON
               Positioned(
                 top: 30,
                 left: 30,
@@ -171,6 +168,11 @@ class _ProjectSectionState extends State<ProjectSection> {
                     fontSize: 20,
                     fontWeight: FontWeight(600)
                   ),),
+                  Text('Featured works:', style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: "Poppins",
+                    fontSize: 12
+                  ),),
                   SizedBox(height: 10,),
                   SizedBox(
                     height: 250,
@@ -240,6 +242,7 @@ class _ProjectSectionState extends State<ProjectSection> {
                         icon: Icon(
                           isPlaying ? Icons.pause : Icons.play_arrow,
                           color: Colors.white,
+                          size: 40,
                         ),
                       ),
                       IconButton(

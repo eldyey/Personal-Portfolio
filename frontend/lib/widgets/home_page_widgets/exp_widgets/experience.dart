@@ -14,10 +14,10 @@ class Experience extends StatelessWidget {
       "title": "Front-End Web Developer (Intern)",
       "company": "FDS Asya Philippines Inc.",
       "date": "Feb. - May 2026",
-      "desc": "Developed a Internship Management System"
+      "desc": ""
     },
     {
-      "title": "Student",
+      "title": "Hello World!",
       "company": "University Laboratory",
       "date": "2023",
       "desc": "Wrote my first Hello World!"
@@ -28,7 +28,6 @@ class Experience extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // LEFT TIMELINE (DOT + LINE)
         Column(
           children: [
             const SizedBox(height: 2),
@@ -41,7 +40,6 @@ class Experience extends StatelessWidget {
               ),
             ),
 
-            // 🔥 THIS IS THE FIX: flexible line instead of fixed height
             if (!isLast)
               Expanded(
                 child: Container(
@@ -55,7 +53,6 @@ class Experience extends StatelessWidget {
 
         const SizedBox(width: 10),
 
-        // RIGHT CONTENT
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 10),
@@ -110,7 +107,7 @@ class Experience extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 295),
         child: Container(
-          height: 430,
+          height: 462,
           width: double.infinity,
           decoration: const BoxDecoration(
             color: Color.fromARGB(15, 93, 94, 94),
@@ -125,15 +122,19 @@ class Experience extends StatelessWidget {
                   "Experience",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     fontFamily: "Poppins",
                   ),
                 ),
+                Text('What I’ve worked on:', style: TextStyle(
+                  color: Colors.grey,
+                  fontFamily: "Poppins",
+                  fontSize: 12,
+                ),),
 
                 const SizedBox(height: 15),
 
-                // 🔥 THIS MAKES EVERYTHING FIT 430px CLEANLY
                 Expanded(
                   child: Column(
                     children: List.generate(experiences.length, (index) {

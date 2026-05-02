@@ -68,13 +68,17 @@ class SkillsSection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              Text('What I work with:', style: TextStyle(
+                color: Colors.grey,
+                fontFamily: "Poppins",
+                fontSize: 12
+              ),),
 
               const SizedBox(height: 12),
 
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // FRONTEND
                   skillColumn("Frontend", [
                     "Flutter / Dart",
                     "ReactJS",
@@ -85,7 +89,6 @@ class SkillsSection extends StatelessWidget {
 
                   const SizedBox(width: 10),
 
-                  // BACKEND (NEW)
                   skillColumn("Backend", [
                     "Go Lang/Gin",
                     "",
@@ -97,7 +100,6 @@ class SkillsSection extends StatelessWidget {
 
                   const SizedBox(width: 10),
 
-                  // DATABASE
                   skillColumn("Db Management", [
                     "SQL",
                     "PostgreSQL",
@@ -110,13 +112,12 @@ class SkillsSection extends StatelessWidget {
 
                   const SizedBox(width: 10),
 
-                  // TOOLS
                   skillColumn("Other", [
                     "Figma",
                     "Git / GitHub",
                     "JMeter",
                     "Postman",
-                    "",
+                    "Jira",
 
                   ]),
                 ],
