@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
 class Header extends StatelessWidget {
-  const Header({super.key});
+  final VoidCallback onMessageClick;
+
+  const Header({super.key, required this.onMessageClick});
 
   void downloadResume() {
-    final url = Uri.base.resolve(
-      "assets/resume/L.Manzanero.pdf",
-    ).toString();
+    final url = Uri.base.resolve("assets/resume/L.Manzanero.pdf").toString();
 
     final anchor = html.AnchorElement(href: url)
       ..setAttribute("download", "L.Manzanero.pdf")
@@ -24,7 +24,6 @@ class Header extends StatelessWidget {
           insetPadding: EdgeInsets.zero,
           child: Stack(
             children: [
-        
               Center(
                 child: InteractiveViewer(
                   child: Image.asset(
@@ -33,7 +32,6 @@ class Header extends StatelessWidget {
                   ),
                 ),
               ),
-
               Positioned(
                 top: 20,
                 left: 20,
@@ -71,10 +69,7 @@ class Header extends StatelessWidget {
                 onTap: () => openImage(context),
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: Image.asset(
-                    'assets/images/profile1.jpg',
-                    height: 140,
-                  ),
+                  child: Image.asset('assets/images/profile1.jpg', height: 140),
                 ),
               ),
 
@@ -83,14 +78,20 @@ class Header extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Lester Manzanero',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Row(
+                    children: const [
+                      Text(
+                        'Lester Manzanero',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      Icon(Icons.verified, color: Colors.blue, size: 20),
+                    ],
                   ),
 
                   const SizedBox(height: 5),
@@ -145,7 +146,7 @@ class Header extends StatelessWidget {
                       const SizedBox(width: 10),
 
                       ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: onMessageClick,
                         icon: const Icon(Icons.message_outlined),
                         label: const Text('Send Message'),
                         style: ElevatedButton.styleFrom(
@@ -171,10 +172,7 @@ class Header extends StatelessWidget {
 
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.light_mode_outlined,
-                  color: Colors.grey,
-                ),
+                icon: const Icon(Icons.light_mode_outlined, color: Colors.grey),
               ),
             ],
           ),
