@@ -15,10 +15,8 @@ class Header extends StatelessWidget {
   });
 
   void downloadResume() {
-    final url =
-        "${html.window.location.origin}/Personal-Portfolio/assets/resume/L.Manzanero.pdf";
-
-    html.AnchorElement(href: url)
+    final url = Uri.base.resolve("assets/resume/L.Manzanero.pdf").toString();
+    final anchor = html.AnchorElement(href: url)
       ..setAttribute("download", "L.Manzanero.pdf")
       ..click();
   }
