@@ -14,18 +14,13 @@ class Header extends StatelessWidget {
     required this.isDark,
   });
 
-  Future<void> downloadResume() async {
-    final data = await rootBundle.load('assets/resume/L.Manzanero.pdf');
-    final bytes = data.buffer.asUint8List();
+  void downloadResume() {
+    final url =
+        "${html.window.location.origin}/Personal-Portfolio/assets/resume/L.Manzanero.pdf";
 
-    final blob = html.Blob([bytes]);
-    final url = html.Url.createObjectUrlFromBlob(blob);
-
-    final anchor = html.AnchorElement(href: url)
+    html.AnchorElement(href: url)
       ..setAttribute("download", "L.Manzanero.pdf")
       ..click();
-
-    html.Url.revokeObjectUrl(url);
   }
 
   void openImage(BuildContext context) {
