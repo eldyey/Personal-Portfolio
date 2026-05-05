@@ -3,8 +3,15 @@ import 'dart:html' as html;
 
 class Header extends StatelessWidget {
   final VoidCallback onMessageClick;
+  final Function(bool) onToggleTheme;
+  final bool isDark;
 
-  const Header({super.key, required this.onMessageClick});
+  const Header({
+    super.key,
+    required this.onMessageClick,
+    required this.onToggleTheme,
+    required this.isDark,
+  });
 
   void downloadResume() {
     final url = Uri.base.resolve("assets/resume/L.Manzanero.pdf").toString();
@@ -20,16 +27,13 @@ class Header extends StatelessWidget {
       barrierColor: Colors.black,
       builder: (_) {
         return Dialog(
-          backgroundColor: const Color.fromARGB(50, 0, 0, 0),
+          backgroundColor: Colors.transparent,
           insetPadding: EdgeInsets.zero,
           child: Stack(
             children: [
               Center(
                 child: InteractiveViewer(
-                  child: Image.asset(
-                    'assets/images/profile1.jpg',
-                    fit: BoxFit.contain,
-                  ),
+                  child: Image.asset('assets/images/profile1.jpg'),
                 ),
               ),
               Positioned(
@@ -51,26 +55,58 @@ class Header extends StatelessWidget {
     );
   }
 
+  Widget themeSwitch() {
+    return GestureDetector(
+      onTap: () => onToggleTheme(!isDark),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        width: 55,
+        height: 28,
+        padding: const EdgeInsets.symmetric(horizontal: 3),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: isDark ? Colors.white24 : Colors.black12,
+          border: Border.all(color: isDark ? Colors.white : Colors.black),
+        ),
+        child: AnimatedAlign(
+          duration: const Duration(milliseconds: 250),
+          alignment: isDark ? Alignment.centerRight : Alignment.centerLeft,
+          child: Container(
+            width: 22,
+            height: 22,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isDark ? Colors.black : Colors.white,
+            ),
+            child: Icon(
+              isDark ? Icons.dark_mode : Icons.light_mode,
+              size: 14,
+              color: isDark ? Colors.white : Colors.black,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final textColor = isDark ? Colors.white : Colors.black;
+    final borderColor = isDark ? Colors.white : Colors.black;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Center(
         child: Container(
           width: 800,
           padding: const EdgeInsets.all(10),
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(15, 93, 94, 94),
-          ),
+          decoration: BoxDecoration(color: Theme.of(context).cardColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
                 onTap: () => openImage(context),
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: Image.asset('assets/images/profile1.jpg', height: 140),
-                ),
+                child: Image.asset('assets/images/profile1.jpg', height: 140),
               ),
 
               const SizedBox(width: 15),
@@ -79,31 +115,35 @@ class Header extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Text(
                         'Lester Manzanero',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: textColor,
                           fontSize: 25,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(width: 5),
-                      Icon(Icons.verified, color: Colors.blue, size: 20),
+                      const SizedBox(width: 5),
+                      const Icon(Icons.verified, color: Colors.blue, size: 20),
                     ],
                   ),
 
                   const SizedBox(height: 5),
 
-                  const Row(
+                  Row(
                     children: [
-                      Icon(Icons.location_on, color: Colors.red, size: 18),
-                      SizedBox(width: 5),
+                      const Icon(
+                        Icons.location_on,
+                        color: Colors.red,
+                        size: 18,
+                      ),
+                      const SizedBox(width: 5),
                       Text(
                         'Laguna, Philippines',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: textColor,
                           fontSize: 12,
                           fontFamily: "Poppins",
                         ),
@@ -113,10 +153,10 @@ class Header extends StatelessWidget {
 
                   const SizedBox(height: 14),
 
-                  const Text(
+                  Text(
                     'Front-End Web Developer',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: textColor,
                       fontSize: 12,
                       fontFamily: "Poppins",
                     ),
@@ -128,18 +168,19 @@ class Header extends StatelessWidget {
                     children: [
                       ElevatedButton.icon(
                         onPressed: downloadResume,
-                        icon: const Icon(Icons.download_outlined),
-                        label: const Text('Resume'),
+                        icon: const Icon(
+                          Icons.download_outlined,
+                          color: Colors.white,
+                        ),
+                        label: const Text(
+                          'Resume',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 10,
-                          ),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          foregroundColor: Colors.white,
                         ),
                       ),
 
@@ -147,20 +188,20 @@ class Header extends StatelessWidget {
 
                       ElevatedButton.icon(
                         onPressed: onMessageClick,
-                        icon: const Icon(Icons.message_outlined),
-                        label: const Text('Send Message'),
+                        icon: Icon(Icons.message_outlined, color: textColor),
+                        label: Text(
+                          'Send Message',
+                          style: TextStyle(color: textColor),
+                        ),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 10,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
                           backgroundColor: Colors.transparent,
-                          foregroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.white),
+                          shadowColor: Colors.transparent,
+                          surfaceTintColor: Colors.transparent,
                           elevation: 0,
+                          side: BorderSide(color: borderColor),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
                     ],
@@ -170,10 +211,7 @@ class Header extends StatelessWidget {
 
               const Spacer(),
 
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.light_mode_outlined, color: Colors.grey),
-              ),
+              themeSwitch(),
             ],
           ),
         ),

@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
 
-class AboutSection extends StatelessWidget{
+class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
+
+  Color t(BuildContext context, {bool muted = false}) {
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    return muted
+        ? (dark ? Colors.white70 : Colors.black54)
+        : (dark ? Colors.white : Colors.black);
+  }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Center(
       child: Container(
         width: 800,
-        decoration: BoxDecoration(
-        color: const Color.fromARGB(15, 93, 94, 94),
-        ),
-        child: Padding(padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(color: Theme.of(context).cardColor),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              Text('About Me', style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight(600),
-                fontFamily: "Poppings",
-                fontSize: 20,
-              ),),
-              SizedBox(height: 10,),
-              Text('Front-End Developer focused on building responsive and modern web applications\nusing Flutter and ReactJs and web technologies. Passionate about UI design,\nperformance, and user experience.', 
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: "Poppins",
-                color: Colors.grey
-              ),)
+              Text(
+                'About Me',
+                style: TextStyle(
+                  color: t(context),
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "Poppins",
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Front-End Developer focused on building responsive and modern web applications\nusing Flutter and ReactJs and web technologies. Passionate about UI design,\nperformance, and user experience.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  color: t(context, muted: true),
+                ),
+              ),
             ],
           ),
         ),

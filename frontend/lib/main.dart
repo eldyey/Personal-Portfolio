@@ -1,19 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/page/home_page.dart';
 
-void main(){
-  runApp(Portfolio());
+void main() {
+  runApp(const Portfolio());
 }
 
-class Portfolio extends StatelessWidget{
+class Portfolio extends StatefulWidget {
   const Portfolio({super.key});
+
   @override
-  Widget build(BuildContext context){
+  State<Portfolio> createState() => _PortfolioState();
+}
+
+class _PortfolioState extends State<Portfolio> {
+  ThemeMode _themeMode = ThemeMode.dark;
+
+  void toggleTheme(bool isDark) {
+    setState(() {
+      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
       title: 'Lester M. | Front-End Developer',
-      home: HomePage(),
+      themeMode: _themeMode,
+
+      theme: ThemeData.light().copyWith(
+        scaffoldBackgroundColor: Colors.white,
+        cardColor: const Color.fromARGB(20, 0, 0, 0),
+      ),
+
+      darkTheme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
+        cardColor: const Color.fromARGB(15, 255, 255, 255),
+      ),
+
+      home: HomePage(
+        onToggleTheme: toggleTheme,
+        isDark: _themeMode == ThemeMode.dark,
+      ),
     );
   }
 }

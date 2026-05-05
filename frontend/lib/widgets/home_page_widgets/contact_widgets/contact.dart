@@ -19,6 +19,16 @@ class _ContactState extends State<Contact> {
 
   bool isLoading = false;
 
+  Color t(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white
+      : Colors.black;
+
+  Color muted(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black54;
+
   Widget inputField(
     String hint,
     TextEditingController controller, {
@@ -30,19 +40,12 @@ class _ContactState extends State<Contact> {
       maxLines: maxLines,
       validator: validator,
       textAlignVertical: TextAlignVertical.top,
-      style: const TextStyle(
-        color: Colors.white,
-        fontSize: 13,
-        fontFamily: "Poppins",
-      ),
+      style: TextStyle(color: t(context), fontSize: 13, fontFamily: "Poppins"),
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(
-          color: Colors.white38,
-          fontFamily: "Poppins",
-        ),
+        hintStyle: TextStyle(color: muted(context), fontFamily: "Poppins"),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.05),
+        fillColor: Theme.of(context).cardColor,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 12,
           vertical: 12,
@@ -53,11 +56,11 @@ class _ContactState extends State<Contact> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.white12),
+          borderSide: BorderSide(color: muted(context)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.white, width: 1),
+          borderSide: BorderSide(color: t(context), width: 1),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -87,11 +90,12 @@ class _ContactState extends State<Contact> {
             child: Text(
               text,
               style: TextStyle(
-                color: isHovering ? Colors.white : Colors.grey,
+                color: isHovering ? t(context) : muted(context),
                 fontFamily: "Poppins",
                 fontSize: 12,
-                decoration:
-                    isHovering ? TextDecoration.underline : TextDecoration.none,
+                decoration: isHovering
+                    ? TextDecoration.underline
+                    : TextDecoration.none,
               ),
             ),
           ),
@@ -106,8 +110,7 @@ class _ContactState extends State<Contact> {
         content: Center(
           child: Text(
             message,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontFamily: "Poppins"),
+            style: TextStyle(fontFamily: "Poppins", color: t(context)),
           ),
         ),
         backgroundColor: Colors.green,
@@ -124,8 +127,7 @@ class _ContactState extends State<Contact> {
         content: Center(
           child: Text(
             message,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontFamily: "Poppins"),
+            style: TextStyle(fontFamily: "Poppins", color: t(context)),
           ),
         ),
         backgroundColor: Colors.red,
@@ -159,7 +161,7 @@ class _ContactState extends State<Contact> {
             "from_name": nameController.text.trim(),
             "from_email": emailController.text.trim(),
             "message": messageController.text.trim(),
-          }
+          },
         }),
       );
 
@@ -187,19 +189,16 @@ class _ContactState extends State<Contact> {
     return null;
   }
 
-  // ✅ UPDATED EMAIL VALIDATION ONLY
   String? validateEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
       return "Email is required";
     }
 
-    final email = value.trim();
-
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     );
 
-    if (!emailRegex.hasMatch(email)) {
+    if (!emailRegex.hasMatch(value.trim())) {
       return "Enter a valid email address";
     }
 
@@ -219,9 +218,7 @@ class _ContactState extends State<Contact> {
       child: Container(
         width: 800,
         padding: const EdgeInsets.all(10),
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(15, 93, 94, 94),
-        ),
+        decoration: BoxDecoration(color: Theme.of(context).cardColor),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -232,19 +229,19 @@ class _ContactState extends State<Contact> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       "Get in Touch",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: t(context),
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         fontFamily: "Poppins",
                       ),
                     ),
-                    const Text(
+                    Text(
                       'Feel free to reach out for collaborations',
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: muted(context),
                         fontFamily: "Poppins",
                       ),
                     ),
@@ -312,54 +309,70 @@ class _ContactState extends State<Contact> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 8),
-                  const Text(
+                  Text(
                     "Other Contact Info",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: t(context),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       fontFamily: "Poppins",
                     ),
                   ),
-                  const Text(
+                  Text(
                     'You can also find me on:',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: muted(context),
                       fontFamily: "Poppins",
                     ),
                   ),
                   const SizedBox(height: 20),
 
-                  const Row(
+                  Row(
                     children: [
-                      Icon(Icons.call_outlined, size: 20, color: Colors.green),
-                      SizedBox(width: 5),
-                      Text("Phone:",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "Poppins",
-                          )),
+                      const Icon(
+                        Icons.call_outlined,
+                        size: 20,
+                        color: Colors.green,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        "Phone:",
+                        style: TextStyle(
+                          color: t(context),
+                          fontFamily: "Poppins",
+                        ),
+                      ),
                     ],
                   ),
 
-                  const Text("+63 953-0047-088",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontFamily: "Poppins",
-                        fontSize: 12,
-                      )),
+                  Text(
+                    "+63 953-0047-088",
+                    style: TextStyle(
+                      color: muted(context),
+                      fontFamily: "Poppins",
+                      fontSize: 12,
+                    ),
+                  ),
 
                   const SizedBox(height: 15),
 
-                  const Row(children: [
-                    Icon(Icons.facebook_outlined, size: 20, color: Colors.blue),
-                    SizedBox(width: 5),
-                    Text("Facebook:",
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.facebook_outlined,
+                        size: 20,
+                        color: Colors.blue,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        "Facebook:",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: t(context),
                           fontFamily: "Poppins",
-                        )),
-                  ]),
+                        ),
+                      ),
+                    ],
+                  ),
 
                   hoverLink(
                     "https://www.facebook.com/lester.manzanero",
@@ -368,17 +381,21 @@ class _ContactState extends State<Contact> {
 
                   const SizedBox(height: 15),
 
-                  const Row(
+                  Row(
                     children: [
-                      Icon(Icons.camera_alt_outlined,
-                          size: 20,
-                          color: Color.fromARGB(255, 168, 55, 93)),
-                      SizedBox(width: 5),
-                      Text("Instagram:",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "Poppins",
-                          )),
+                      const Icon(
+                        Icons.camera_alt_outlined,
+                        size: 20,
+                        color: Color.fromARGB(255, 168, 55, 93),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        "Instagram:",
+                        style: TextStyle(
+                          color: t(context),
+                          fontFamily: "Poppins",
+                        ),
+                      ),
                     ],
                   ),
 
@@ -389,10 +406,10 @@ class _ContactState extends State<Contact> {
 
                   const SizedBox(height: 70),
 
-                  const Text(
+                  Text(
                     "Feel free to reach out.",
                     style: TextStyle(
-                      color: Colors.white54,
+                      color: muted(context),
                       fontFamily: "Poppins",
                     ),
                   ),

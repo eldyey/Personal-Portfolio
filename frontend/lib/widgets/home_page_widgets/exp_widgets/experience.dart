@@ -24,18 +24,38 @@ class Experience extends StatelessWidget {
     },
   ];
 
-  Widget timelineItem(Map<String, String> exp, bool isLast) {
+  Color t(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white
+      : Colors.black;
+
+  Color muted(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black54;
+
+  Color faint(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white38
+      : Colors.black38;
+
+  Widget timelineItem(
+    BuildContext context,
+    Map<String, String> exp,
+    bool isLast,
+  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           children: [
             const SizedBox(height: 2),
+
             Container(
               width: 10,
               height: 10,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: t(context),
                 shape: BoxShape.circle,
               ),
             ),
@@ -62,27 +82,33 @@ class Experience extends StatelessWidget {
               children: [
                 Text(
                   exp["title"]!,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: t(context),
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                     fontFamily: "Poppins",
                   ),
                 ),
+
                 const SizedBox(height: 2),
+
                 Text(
                   exp["company"]!,
-                  style: const TextStyle(color: Colors.white70, fontSize: 11),
+                  style: TextStyle(color: muted(context), fontSize: 11),
                 ),
+
                 const SizedBox(height: 2),
+
                 Text(
                   exp["date"]!,
-                  style: const TextStyle(color: Colors.white38, fontSize: 10),
+                  style: TextStyle(color: faint(context), fontSize: 10),
                 ),
+
                 const SizedBox(height: 4),
+
                 Text(
                   exp["desc"]!,
-                  style: const TextStyle(color: Colors.white54, fontSize: 10),
+                  style: TextStyle(color: muted(context), fontSize: 10),
                 ),
               ],
             ),
@@ -100,28 +126,27 @@ class Experience extends StatelessWidget {
         child: Container(
           height: 470,
           width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(15, 93, 94, 94),
-          ),
+          decoration: BoxDecoration(color: Theme.of(context).cardColor),
 
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Experience",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: t(context),
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     fontFamily: "Poppins",
                   ),
                 ),
+
                 Text(
                   'What I’ve worked on:',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: muted(context),
                     fontFamily: "Poppins",
                     fontSize: 12,
                   ),
@@ -134,6 +159,7 @@ class Experience extends StatelessWidget {
                     children: List.generate(experiences.length, (index) {
                       return Expanded(
                         child: timelineItem(
+                          context,
                           experiences[index],
                           index == experiences.length - 1,
                         ),

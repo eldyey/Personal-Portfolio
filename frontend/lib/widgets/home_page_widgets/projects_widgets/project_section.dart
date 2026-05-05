@@ -40,6 +40,26 @@ class _ProjectSectionState extends State<ProjectSection> {
 
   int currentIndex = 0;
 
+  Color text(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white
+      : Colors.black;
+
+  Color muted(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black54;
+
+  Color faint(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white38
+      : Colors.black38;
+
+  Color bg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? const Color.fromARGB(15, 93, 94, 94)
+      : Colors.white;
+
   @override
   void initState() {
     super.initState();
@@ -98,7 +118,7 @@ class _ProjectSectionState extends State<ProjectSection> {
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: const Color.fromARGB(15, 93, 94, 94),
+          color: bg(context),
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
@@ -123,26 +143,24 @@ class _ProjectSectionState extends State<ProjectSection> {
         children: [
           Container(
             width: 495,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(15, 93, 94, 94),
-            ),
+            decoration: BoxDecoration(color: Theme.of(context).cardColor),
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'Projects',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: text(context),
                       fontFamily: "Poppins",
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Featured works:',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: muted(context),
                       fontFamily: "Poppins",
                       fontSize: 12,
                     ),
@@ -189,11 +207,10 @@ class _ProjectSectionState extends State<ProjectSection> {
                           width: 455,
                           child: Stack(
                             children: [
-                              Container(color: Colors.white10),
-
+                              Container(color: muted(context).withOpacity(0.2)),
                               FractionallySizedBox(
                                 widthFactor: progress,
-                                child: Container(color: Colors.white),
+                                child: Container(color: text(context)),
                               ),
                             ],
                           ),
@@ -202,14 +219,14 @@ class _ProjectSectionState extends State<ProjectSection> {
                     },
                   ),
 
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
                   Column(
                     children: [
                       Text(
                         projects[currentIndex]["desc"]!,
-                        style: const TextStyle(
-                          color: Colors.white70,
+                        style: TextStyle(
+                          color: muted(context),
                           fontFamily: "Poppins",
                           fontSize: 14,
                         ),
@@ -217,8 +234,8 @@ class _ProjectSectionState extends State<ProjectSection> {
                       const SizedBox(height: 5),
                       Text(
                         projects[currentIndex]["sub"]!,
-                        style: const TextStyle(
-                          color: Colors.white38,
+                        style: TextStyle(
+                          color: faint(context),
                           fontFamily: "Poppins",
                           fontSize: 11,
                         ),
@@ -226,8 +243,8 @@ class _ProjectSectionState extends State<ProjectSection> {
                       const SizedBox(height: 5),
                       Text(
                         projects[currentIndex]["extra"]!,
-                        style: const TextStyle(
-                          color: Colors.white24,
+                        style: TextStyle(
+                          color: faint(context),
                           fontFamily: "Poppins",
                           fontSize: 10,
                         ),
@@ -247,16 +264,13 @@ class _ProjectSectionState extends State<ProjectSection> {
                             curve: Curves.easeInOut,
                           );
                         },
-                        icon: const Icon(
-                          Icons.skip_previous,
-                          color: Colors.white,
-                        ),
+                        icon: Icon(Icons.skip_previous, color: text(context)),
                       ),
                       IconButton(
                         onPressed: togglePlayPause,
                         icon: Icon(
                           isPlaying ? Icons.pause : Icons.play_arrow,
-                          color: Colors.white,
+                          color: text(context),
                           size: 40,
                         ),
                       ),
@@ -267,7 +281,7 @@ class _ProjectSectionState extends State<ProjectSection> {
                             curve: Curves.easeInOut,
                           );
                         },
-                        icon: const Icon(Icons.skip_next, color: Colors.white),
+                        icon: Icon(Icons.skip_next, color: text(context)),
                       ),
                     ],
                   ),

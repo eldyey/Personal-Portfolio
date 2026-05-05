@@ -3,13 +3,33 @@ import 'package:flutter/material.dart';
 class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
 
-  Widget skillItem(String text) {
+  Color text(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white
+      : Colors.black;
+
+  Color muted(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white70
+      : Colors.black54;
+
+  Color border(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white24
+      : Colors.black26;
+
+  Color bg(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? const Color.fromARGB(15, 93, 94, 94)
+      : Colors.white;
+
+  Widget skillItem(BuildContext context, String textValue) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.white70,
+        textValue,
+        style: TextStyle(
+          color: muted(context),
           fontSize: 12,
           fontFamily: "Poppins",
         ),
@@ -17,13 +37,13 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  Widget skillColumn(String title, List<String> skills) {
+  Widget skillColumn(BuildContext context, String title, List<String> skills) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.transparent,
-          border: Border.all(color: Colors.white24),
+          border: Border.all(color: border(context)),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -31,15 +51,15 @@ class SkillsSection extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: text(context),
                 fontSize: 14,
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: 10),
-            ...skills.map(skillItem),
+            ...skills.map((e) => skillItem(context, e)),
           ],
         ),
       ),
@@ -53,33 +73,34 @@ class SkillsSection extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 800),
         child: Container(
           padding: const EdgeInsets.all(12),
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(15, 93, 94, 94),
-          ),
+          decoration: BoxDecoration(color: Theme.of(context).cardColor),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "Skills & Tools",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: text(context),
                   fontSize: 18,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Text('What I work with:', style: TextStyle(
-                color: Colors.grey,
-                fontFamily: "Poppins",
-                fontSize: 12
-              ),),
+              Text(
+                'What I work with:',
+                style: TextStyle(
+                  color: muted(context),
+                  fontFamily: "Poppins",
+                  fontSize: 12,
+                ),
+              ),
 
               const SizedBox(height: 12),
 
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  skillColumn("Frontend", [
+                  skillColumn(context, "Frontend", [
                     "Flutter / Dart",
                     "ReactJS",
                     "HTML",
@@ -89,36 +110,32 @@ class SkillsSection extends StatelessWidget {
 
                   const SizedBox(width: 10),
 
-                  skillColumn("Backend", [
+                  skillColumn(context, "Backend", [
                     "Go Lang/Gin",
                     "",
                     "",
                     "",
                     "",
-
                   ]),
 
                   const SizedBox(width: 10),
 
-                  skillColumn("Db Management", [
+                  skillColumn(context, "Db Management", [
                     "SQL",
                     "PostgreSQL",
                     "MySQL",
                     "",
                     "",
-                    
-
                   ]),
 
                   const SizedBox(width: 10),
 
-                  skillColumn("Other", [
+                  skillColumn(context, "Other", [
                     "Figma",
                     "Git / GitHub",
                     "JMeter",
                     "Postman",
                     "Jira",
-
                   ]),
                 ],
               ),

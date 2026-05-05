@@ -7,7 +7,14 @@ import 'package:frontend/widgets/home_page_widgets/projects_widgets/project_sect
 import 'package:frontend/widgets/home_page_widgets/skills_widgets/skills_section.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Function(bool) onToggleTheme;
+  final bool isDark;
+
+  const HomePage({
+    super.key,
+    required this.onToggleTheme,
+    required this.isDark,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -35,7 +42,11 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         controller: _scrollController,
         children: [
-          Header(onMessageClick: scrollToContact),
+          Header(
+            onMessageClick: scrollToContact,
+            onToggleTheme: widget.onToggleTheme,
+            isDark: widget.isDark,
+          ),
           AboutSection(),
           SizedBox(height: 10),
           SkillsSection(),
@@ -43,6 +54,7 @@ class _HomePageState extends State<HomePage> {
           ProjectSection(),
           SizedBox(height: 10),
           Container(key: _contactKey, child: Contact()),
+          SizedBox(height: 10),
           Footer(),
         ],
       ),
