@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class Header extends StatelessWidget {
   final VoidCallback onMessageClick;
@@ -14,11 +15,18 @@ class Header extends StatelessWidget {
     required this.isDark,
   });
 
-  void downloadResume() {
-    final url = Uri.base.resolve("assets/resume/L.Manzanero.pdf").toString();
-    final anchor = html.AnchorElement(href: url)
+  Future<void> downloadResume() async {
+    final data = await rootBundle.load('assets/resume/L.Manzanero.pdf');
+    final bytes = data.buffer.asUint8List();
+
+    final blob = html.Blob([bytes]);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+
+    html.AnchorElement(href: url)
       ..setAttribute("download", "L.Manzanero.pdf")
       ..click();
+
+    html.Url.revokeObjectUrl(url);
   }
 
   void openImage(BuildContext context) {
