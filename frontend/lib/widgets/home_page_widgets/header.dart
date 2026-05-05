@@ -41,7 +41,11 @@ class Header extends StatelessWidget {
             children: [
               Center(
                 child: InteractiveViewer(
-                  child: Image.asset('assets/images/profile1.jpg'),
+                  child: Image.asset(
+                    isDark
+                        ? 'assets/images/profile1-night.png'
+                        : 'assets/images/profile1.jpg',
+                  ),
                 ),
               ),
               Positioned(
@@ -102,128 +106,139 @@ class Header extends StatelessWidget {
     final textColor = isDark ? Colors.white : Colors.black;
     final borderColor = isDark ? Colors.white : Colors.black;
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 700;
+
+    Widget profileImage() {
+      return AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        transitionBuilder: (child, animation) =>
+            FadeTransition(opacity: animation, child: child),
+        child: GestureDetector(
+          key: ValueKey(isDark),
+          onTap: () => openImage(context),
+          child: Image.asset(
+            isDark
+                ? 'assets/images/profile1-night.png'
+                : 'assets/images/profile1.jpg',
+            height: isMobile ? 110 : 140,
+          ),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Center(
         child: Container(
-          width: 800,
+          width: isMobile ? double.infinity : 800,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(color: Theme.of(context).cardColor),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () => openImage(context),
-                child: Image.asset('assets/images/profile1.jpg', height: 140),
-              ),
-
-              const SizedBox(width: 15),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Lester Manzanero',
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 25,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      const Icon(Icons.verified, color: Colors.blue, size: 20),
-                    ],
-                  ),
-
-                  const SizedBox(height: 5),
-
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: Colors.red,
-                        size: 18,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        'Laguna, Philippines',
-                        style: TextStyle(
-                          color: textColor,
-                          fontSize: 12,
-                          fontFamily: "Poppins",
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  Text(
-                    'Front-End Web Developer',
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: 12,
-                      fontFamily: "Poppins",
-                    ),
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  Row(
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: downloadResume,
-                        icon: const Icon(
-                          Icons.download_outlined,
-                          color: Colors.white,
-                        ),
-                        label: const Text(
-                          'Resume',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(width: 10),
-
-                      ElevatedButton.icon(
-                        onPressed: onMessageClick,
-                        icon: Icon(Icons.message_outlined, color: textColor),
-                        label: Text(
-                          'Send Message',
-                          style: TextStyle(color: textColor),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          shadowColor: Colors.transparent,
-                          surfaceTintColor: Colors.transparent,
-                          elevation: 0,
-                          side: BorderSide(color: borderColor),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const Spacer(),
-
-              themeSwitch(),
-            ],
-          ),
+          child: isMobile
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    profileImage(),
+                    const SizedBox(height: 15),
+                    buildInfo(textColor, borderColor, context),
+                    const SizedBox(height: 15),
+                    themeSwitch(),
+                  ],
+                )
+              : Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    profileImage(),
+                    const SizedBox(width: 15),
+                    buildInfo(textColor, borderColor, context),
+                    const Spacer(),
+                    themeSwitch(),
+                  ],
+                ),
         ),
       ),
+    );
+  }
+
+  Widget buildInfo(Color textColor, Color borderColor, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              'Lester Manzanero',
+              style: TextStyle(
+                color: textColor,
+                fontSize: 25,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(width: 5),
+            const Icon(Icons.verified, color: Colors.blue, size: 20),
+          ],
+        ),
+        const SizedBox(height: 5),
+        Row(
+          children: [
+            const Icon(Icons.location_on, color: Colors.red, size: 18),
+            const SizedBox(width: 5),
+            Text(
+              'Laguna, Philippines',
+              style: TextStyle(
+                color: textColor,
+                fontSize: 12,
+                fontFamily: "Poppins",
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 14),
+        Text(
+          'Front-End Web Developer',
+          style: TextStyle(
+            color: textColor,
+            fontSize: 12,
+            fontFamily: "Poppins",
+          ),
+        ),
+        const SizedBox(height: 14),
+        Row(
+          children: [
+            ElevatedButton.icon(
+              onPressed: downloadResume,
+              icon: const Icon(Icons.download_outlined, color: Colors.white),
+              label: const Text(
+                'Resume',
+                style: TextStyle(color: Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            ElevatedButton.icon(
+              onPressed: onMessageClick,
+              icon: Icon(Icons.message_outlined, color: textColor),
+              label: Text('Send Message', style: TextStyle(color: textColor)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                surfaceTintColor: Colors.transparent,
+                elevation: 0,
+                side: BorderSide(color: borderColor),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

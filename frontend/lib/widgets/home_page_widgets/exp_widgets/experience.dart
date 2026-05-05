@@ -39,6 +39,11 @@ class Experience extends StatelessWidget {
       ? Colors.white38
       : Colors.black38;
 
+  Color line(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+      ? Colors.white24
+      : Colors.black26;
+
   Widget timelineItem(
     BuildContext context,
     Map<String, String> exp,
@@ -65,7 +70,7 @@ class Experience extends StatelessWidget {
                 child: Container(
                   width: 2,
                   margin: const EdgeInsets.symmetric(vertical: 4),
-                  color: Colors.white24,
+                  color: line(context),
                 ),
               ),
           ],

@@ -96,15 +96,29 @@ class _ProjectSectionState extends State<ProjectSection> {
     });
   }
 
+  // ✅ UPDATED: fullscreen image with CLOSE (X)
   void openImage(String imagePath) {
     showDialog(
       context: context,
+      barrierColor: Colors.black,
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(20),
-          child: Center(
-            child: InteractiveViewer(child: Image.asset(imagePath)),
+          child: Stack(
+            children: [
+              Center(child: InteractiveViewer(child: Image.asset(imagePath))),
+
+              // ✅ CLOSE BUTTON (X)
+              Positioned(
+                top: 10,
+                right: 10,
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.close, color: Colors.white, size: 30),
+                ),
+              ),
+            ],
           ),
         );
       },
@@ -165,9 +179,7 @@ class _ProjectSectionState extends State<ProjectSection> {
                       fontSize: 12,
                     ),
                   ),
-
                   const SizedBox(height: 8),
-
                   SizedBox(
                     height: 250,
                     child: PageView.builder(
@@ -183,9 +195,7 @@ class _ProjectSectionState extends State<ProjectSection> {
                       },
                     ),
                   ),
-
                   const SizedBox(height: 10),
-
                   AnimatedBuilder(
                     animation: _controller,
                     builder: (context, _) {
@@ -218,9 +228,7 @@ class _ProjectSectionState extends State<ProjectSection> {
                       );
                     },
                   ),
-
                   const SizedBox(height: 5),
-
                   Column(
                     children: [
                       Text(
@@ -251,9 +259,7 @@ class _ProjectSectionState extends State<ProjectSection> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 10),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -289,9 +295,7 @@ class _ProjectSectionState extends State<ProjectSection> {
               ),
             ),
           ),
-
           const SizedBox(width: 10),
-
           Experience(),
         ],
       ),
