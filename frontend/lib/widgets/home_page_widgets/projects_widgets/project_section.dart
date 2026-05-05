@@ -14,8 +14,6 @@ class _ProjectSectionState extends State<ProjectSection> {
   Timer? _timer;
   bool isPlaying = true;
 
-  int currentIndex = 0;
-
   final List<Map<String, String>> projects = [
     {
       "title": "Project 1",
@@ -39,6 +37,8 @@ class _ProjectSectionState extends State<ProjectSection> {
       "image": "assets/images/project3.jpg",
     },
   ];
+
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -75,6 +75,7 @@ class _ProjectSectionState extends State<ProjectSection> {
       }
     });
   }
+
   void openImage(String imagePath) {
     showDialog(
       context: context,
@@ -82,35 +83,8 @@ class _ProjectSectionState extends State<ProjectSection> {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(20),
-          child: Stack(
-            children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(40),
-                  child: InteractiveViewer(
-                    child: Image.asset(imagePath),
-                  ),
-                ),
-              ),
-
-              Positioned(
-                top: 30,
-                left: 30,
-                child: SafeArea(
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.black54,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          child: Center(
+            child: InteractiveViewer(child: Image.asset(imagePath)),
           ),
         );
       },
@@ -118,23 +92,17 @@ class _ProjectSectionState extends State<ProjectSection> {
   }
 
   Widget projectCard(Map<String, String> project) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => openImage(project["image"]!),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: const Color.fromARGB(15, 93, 94, 94),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              project["image"]!,
-              fit: BoxFit.cover,
-            ),
-          ),
+    return GestureDetector(
+      onTap: () => openImage(project["image"]!),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: const Color.fromARGB(15, 93, 94, 94),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(project["image"]!, fit: BoxFit.cover),
         ),
       ),
     );
@@ -162,18 +130,26 @@ class _ProjectSectionState extends State<ProjectSection> {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  Text('Projects', style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Poppins",
-                    fontSize: 20,
-                    fontWeight: FontWeight(600)
-                  ),),
-                  Text('Featured works:', style: TextStyle(
-                    color: Colors.grey,
-                    fontFamily: "Poppins",
-                    fontSize: 12
-                  ),),
-                  SizedBox(height: 10,),
+                  const Text(
+                    'Projects',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Poppins",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Text(
+                    'Featured works:',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontFamily: "Poppins",
+                      fontSize: 12,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
                   SizedBox(
                     height: 250,
                     child: PageView.builder(
@@ -191,6 +167,42 @@ class _ProjectSectionState extends State<ProjectSection> {
                   ),
 
                   const SizedBox(height: 10),
+
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, _) {
+                      double page = 0;
+
+                      if (_controller.hasClients && _controller.page != null) {
+                        page = _controller.page!;
+                      } else {
+                        page = currentIndex.toDouble();
+                      }
+
+                      final progress =
+                          (page % projects.length) / projects.length;
+
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: SizedBox(
+                          height: 4,
+                          width: 455,
+                          child: Stack(
+                            children: [
+                              Container(color: Colors.white10),
+
+                              FractionallySizedBox(
+                                widthFactor: progress,
+                                child: Container(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
+                  SizedBox(height: 5),
 
                   Column(
                     children: [
@@ -235,7 +247,10 @@ class _ProjectSectionState extends State<ProjectSection> {
                             curve: Curves.easeInOut,
                           );
                         },
-                        icon: const Icon(Icons.skip_previous, color: Colors.white),
+                        icon: const Icon(
+                          Icons.skip_previous,
+                          color: Colors.white,
+                        ),
                       ),
                       IconButton(
                         onPressed: togglePlayPause,

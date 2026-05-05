@@ -8,19 +8,19 @@ class Experience extends StatelessWidget {
       "title": "BS Computer Engineering",
       "company": "Pamantasan ng Lungsod ng San Pablo",
       "date": "A.Y 2025-2026",
-      "desc": ""
+      "desc": "",
     },
     {
       "title": "Front-End Web Developer (Intern)",
       "company": "FDS Asya Philippines Inc.",
       "date": "Feb. - May 2026",
-      "desc": ""
+      "desc": "",
     },
     {
       "title": "Hello World!",
       "company": "University Laboratory",
       "date": "2023",
-      "desc": "Wrote my first Hello World!"
+      "desc": "Wrote my first Hello World!",
     },
   ];
 
@@ -72,26 +72,17 @@ class Experience extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   exp["company"]!,
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 11,
-                  ),
+                  style: const TextStyle(color: Colors.white70, fontSize: 11),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   exp["date"]!,
-                  style: const TextStyle(
-                    color: Colors.white38,
-                    fontSize: 10,
-                  ),
+                  style: const TextStyle(color: Colors.white38, fontSize: 10),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   exp["desc"]!,
-                  style: const TextStyle(
-                    color: Colors.white54,
-                    fontSize: 10,
-                  ),
+                  style: const TextStyle(color: Colors.white54, fontSize: 10),
                 ),
               ],
             ),
@@ -107,7 +98,7 @@ class Experience extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 295),
         child: Container(
-          height: 462,
+          height: 470,
           width: double.infinity,
           decoration: const BoxDecoration(
             color: Color.fromARGB(15, 93, 94, 94),
@@ -127,11 +118,14 @@ class Experience extends StatelessWidget {
                     fontFamily: "Poppins",
                   ),
                 ),
-                Text('What I’ve worked on:', style: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: "Poppins",
-                  fontSize: 12,
-                ),),
+                Text(
+                  'What I’ve worked on:',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: "Poppins",
+                    fontSize: 12,
+                  ),
+                ),
 
                 const SizedBox(height: 15),
 
