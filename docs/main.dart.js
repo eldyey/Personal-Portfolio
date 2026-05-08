@@ -24877,7 +24877,7 @@ h=J
 s=2
 return A.S(A.Nw(),$async$arA)
 case 2:q=i.j1(h.bB(b.a,"isDark"))
-q=q===!0?B.i6:B.yR
+q=q!==!1?B.i6:B.yR
 if($.Z==null)A.azB()
 p=$.Z
 p.toString

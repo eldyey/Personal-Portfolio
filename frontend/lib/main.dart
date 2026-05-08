@@ -6,7 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final prefs = await SharedPreferences.getInstance();
-  final isDark = prefs.getBool('isDark') ?? false;
+  final isDark = prefs.getBool('isDark') ?? true;
 
   runApp(
     Portfolio(initialThemeMode: isDark ? ThemeMode.dark : ThemeMode.light),
