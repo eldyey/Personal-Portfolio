@@ -196,7 +196,7 @@ class Header extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          'Front-End Web Developer',
+          'Aspiring Front-End Web Developer',
           style: TextStyle(
             color: textColor,
             fontSize: 12,
