@@ -114,14 +114,17 @@ class Header extends StatelessWidget {
         duration: const Duration(milliseconds: 400),
         transitionBuilder: (child, animation) =>
             FadeTransition(opacity: animation, child: child),
-        child: GestureDetector(
-          key: ValueKey(isDark),
-          onTap: () => openImage(context),
-          child: Image.asset(
-            isDark
-                ? 'assets/images/profile1-night.png'
-                : 'assets/images/profile1.jpg',
-            height: isMobile ? 110 : 140,
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            key: ValueKey(isDark),
+            onTap: () => openImage(context),
+            child: Image.asset(
+              isDark
+                  ? 'assets/images/profile1-night.png'
+                  : 'assets/images/profile1.jpg',
+              height: isMobile ? 110 : 140,
+            ),
           ),
         ),
       );
