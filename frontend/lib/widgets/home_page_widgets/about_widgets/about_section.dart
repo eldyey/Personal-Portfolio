@@ -29,12 +29,13 @@ class AboutSection extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              const SizedBox(height: 10),
+
               Text(
                 'Front-End Developer focused on building responsive and modern web applications\nusing Flutter and ReactJs and web technologies. Passionate about UI design,\nperformance, and user experience.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Poppins",
+                  fontSize: 12,
                   color: t(context, muted: true),
                 ),
               ),
