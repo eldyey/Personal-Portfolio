@@ -124,6 +124,7 @@ class _SkillsSectionState extends State<SkillsSection> {
                         item["title"],
                         style: TextStyle(
                           fontSize: 15,
+                          fontFamily: "Poppins",
                           fontWeight: FontWeight.w600,
                           color: text(context),
                         ),
@@ -131,7 +132,11 @@ class _SkillsSectionState extends State<SkillsSection> {
                       const SizedBox(height: 2),
                       Text(
                         item["desc"],
-                        style: TextStyle(fontSize: 12, color: muted(context)),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: muted(context),
+                          fontFamily: "Poppins",
+                        ),
                       ),
                     ],
                   ),
@@ -202,12 +207,17 @@ class _SkillsSectionState extends State<SkillsSection> {
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: text(context),
+                    fontFamily: "Poppins",
                   ),
                 ),
 
                 Text(
                   "A breakdown of technologies I use to design, build, and ship software",
-                  style: TextStyle(fontSize: 12.5, color: muted(context)),
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    color: muted(context),
+                    fontFamily: "Poppins",
+                  ),
                 ),
 
                 const SizedBox(height: 10),

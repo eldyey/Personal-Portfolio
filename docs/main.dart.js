@@ -84921,12 +84921,12 @@ g=A.dY(j,A.js(n,A.T(m).ax.a===B.n?B.i:B.l,j,18),B.x,j,j,new A.cP(g,j,o,j,j,j,B.e
 p=i.h(0,"title")
 o=k.c
 o.toString
-p=A.bH(p,j,j,j,A.bu(j,j,A.T(o).ax.a===B.n?B.i:B.l,j,j,j,j,j,j,j,j,15,j,j,B.bA,j,j,!0,j,j,j,j,j,j,j,j),j,j)
+p=A.bH(p,j,j,j,A.bu(j,j,A.T(o).ax.a===B.n?B.i:B.l,j,j,j,j,j,"Poppins",j,j,15,j,j,B.bA,j,j,!0,j,j,j,j,j,j,j,j),j,j)
 n=i.h(0,"desc")
 m=k.c
 m.toString
 o=t.p
-n=A.kx(A.eb(A.c([p,B.i1,A.bH(n,j,j,j,A.bu(j,j,A.T(m).ax.a===B.n?B.v:B.t,j,j,j,j,j,j,j,j,12,j,j,j,j,j,!0,j,j,j,j,j,j,j,j),j,j)],o),B.ax,B.L),1)
+n=A.kx(A.eb(A.c([p,B.i1,A.bH(n,j,j,j,A.bu(j,j,A.T(m).ax.a===B.n?B.v:B.t,j,j,j,j,j,"Poppins",j,j,11,j,j,j,j,j,!0,j,j,j,j,j,j,j,j),j,j)],o),B.ax,B.L),1)
 p=A.dl(20)
 m=h?0.5:0
 l=k.c
@@ -84937,8 +84937,8 @@ n=A.a5(p).i("ad<1,i>")
 p=A.a8(new A.ad(p,new A.apa(k),n),n.i("ax.E"))
 p=new A.ct(B.DW,A.aur(p,10,10),j)}else p=B.am
 return A.dY(j,A.eb(A.c([new A.ct(B.DX,g,j),A.IF(A.asN(p,B.cA,B.a8),B.Q,j)],o),B.T,B.L),B.x,j,j,new A.cP(q.at,j,s,r,j,j,B.at),j,j,j,B.DN,j,j,j,j)},
-M(a){var s=null,r=A.T(a),q=A.bH("Skills & Tools",s,s,s,A.bu(s,s,A.T(a).ax.a===B.n?B.i:B.l,s,s,s,s,s,s,s,s,20,s,s,B.bA,s,s,!0,s,s,s,s,s,s,s,s),s,s)
-return A.eJ(new A.hF(B.A8,A.dY(s,new A.ct(B.E1,A.eb(A.c([B.cn,q,A.bH("A breakdown of technologies I use to design, build, and ship software",s,s,s,A.bu(s,s,A.T(a).ax.a===B.n?B.v:B.t,s,s,s,s,s,s,s,s,12.5,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),s,s),B.cn,A.aJ4(new A.apb(this))],t.p),B.T,B.L),s),B.x,r.at,s,s,s,s,s,s,s,s,s,s),s),s,s)}}
+M(a){var s=null,r=A.T(a),q=A.bH("Skills & Tools",s,s,s,A.bu(s,s,A.T(a).ax.a===B.n?B.i:B.l,s,s,s,s,s,"Poppins",s,s,20,s,s,B.bA,s,s,!0,s,s,s,s,s,s,s,s),s,s)
+return A.eJ(new A.hF(B.A8,A.dY(s,new A.ct(B.E1,A.eb(A.c([B.cn,q,A.bH("A breakdown of technologies I use to design, build, and ship software",s,s,s,A.bu(s,s,A.T(a).ax.a===B.n?B.v:B.t,s,s,s,s,s,"Poppins",s,s,12.5,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),s,s),B.cn,A.aJ4(new A.apb(this))],t.p),B.T,B.L),s),B.x,r.at,s,s,s,s,s,s,s,s,s,s),s),s,s)}}
 A.ap9.prototype={
 $0(){var s=this.a
 s.ah(new A.ap8(s,this.b))},
