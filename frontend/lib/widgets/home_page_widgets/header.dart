@@ -68,32 +68,35 @@ class Header extends StatelessWidget {
   }
 
   Widget themeSwitch() {
-    return GestureDetector(
-      onTap: () => onToggleTheme(!isDark),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        width: 55,
-        height: 28,
-        padding: const EdgeInsets.symmetric(horizontal: 3),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: isDark ? Colors.white24 : Colors.black12,
-          border: Border.all(color: isDark ? Colors.white : Colors.black),
-        ),
-        child: AnimatedAlign(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => onToggleTheme(!isDark),
+        child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
-          alignment: isDark ? Alignment.centerRight : Alignment.centerLeft,
-          child: Container(
-            width: 22,
-            height: 22,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isDark ? Colors.black : Colors.white,
-            ),
-            child: Icon(
-              isDark ? Icons.dark_mode : Icons.light_mode,
-              size: 14,
-              color: isDark ? Colors.white : Colors.black,
+          width: 55,
+          height: 28,
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: isDark ? Colors.white24 : Colors.black12,
+            border: Border.all(color: isDark ? Colors.white : Colors.black),
+          ),
+          child: AnimatedAlign(
+            duration: const Duration(milliseconds: 250),
+            alignment: isDark ? Alignment.centerRight : Alignment.centerLeft,
+            child: Container(
+              width: 22,
+              height: 22,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isDark ? Colors.black : Colors.white,
+              ),
+              child: Icon(
+                isDark ? Icons.dark_mode : Icons.light_mode,
+                size: 14,
+                color: isDark ? Colors.white : Colors.black,
+              ),
             ),
           ),
         ),

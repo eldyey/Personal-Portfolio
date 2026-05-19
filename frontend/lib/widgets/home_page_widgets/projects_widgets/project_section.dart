@@ -96,7 +96,6 @@ class _ProjectSectionState extends State<ProjectSection> {
     });
   }
 
-  // ✅ UPDATED: fullscreen image with CLOSE (X)
   void openImage(String imagePath) {
     showDialog(
       context: context,
@@ -109,7 +108,6 @@ class _ProjectSectionState extends State<ProjectSection> {
             children: [
               Center(child: InteractiveViewer(child: Image.asset(imagePath))),
 
-              // ✅ CLOSE BUTTON (X)
               Positioned(
                 top: 10,
                 right: 10,
@@ -126,17 +124,20 @@ class _ProjectSectionState extends State<ProjectSection> {
   }
 
   Widget projectCard(Map<String, String> project) {
-    return GestureDetector(
-      onTap: () => openImage(project["image"]!),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: bg(context),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(project["image"]!, fit: BoxFit.cover),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => openImage(project["image"]!),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: bg(context),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(project["image"]!, fit: BoxFit.cover),
+          ),
         ),
       ),
     );
