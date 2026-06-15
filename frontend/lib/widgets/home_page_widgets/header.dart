@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 import 'package:flutter/services.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 class Header extends StatelessWidget {
   final VoidCallback onMessageClick;
