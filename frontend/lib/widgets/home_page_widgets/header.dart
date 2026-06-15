@@ -15,9 +15,9 @@ class Header extends StatelessWidget {
   });
 
   Future<void> downloadResume() async {
-  final url = 'assets/resume/Lester_John_Manzanero.pdf';
-  html.window.open(url, '_blank');
+  html.window.open('/Lester_John_Manzanero.pdf', '_blank');
 }
+
 
   void openImage(BuildContext context) {
     showDialog(
