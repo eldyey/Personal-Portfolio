@@ -411,7 +411,7 @@ class _ContactState extends State<Contact> {
                   Row(
                     children: [
                       Image.asset(
-                        '../../assets/images/linkedin.png',
+                        '../../../assets/images/linkedin.png',
                         height: 20,
                       ),
                       const SizedBox(width: 5),
