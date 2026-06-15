@@ -16,18 +16,9 @@ class Header extends StatelessWidget {
   });
 
   Future<void> downloadResume() async {
-    final data = await rootBundle.load('assets/resume/L.Manzanero.pdf');
-    final bytes = data.buffer.asUint8List();
-
-    final blob = html.Blob([bytes]);
-    final url = html.Url.createObjectUrlFromBlob(blob);
-
-    html.AnchorElement(href: url)
-      ..setAttribute("download", "L.Manzanero.pdf")
-      ..click();
-
-    html.Url.revokeObjectUrl(url);
-  }
+  final url = 'assets/resume/Lester_John_Manzanero.pdf';
+  html.window.open(url, '_blank');
+}
 
   void openImage(BuildContext context) {
     showDialog(
@@ -214,7 +205,7 @@ class Header extends StatelessWidget {
           children: [
             ElevatedButton.icon(
               onPressed: downloadResume,
-              icon: const Icon(Icons.download_outlined, color: Colors.white),
+              icon: const Icon(Icons.view_day_outlined, color: Colors.white),
               label: const Text(
                 'Resume',
                 style: TextStyle(color: Colors.white),

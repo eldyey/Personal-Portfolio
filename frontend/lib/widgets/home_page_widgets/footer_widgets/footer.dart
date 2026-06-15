@@ -37,7 +37,7 @@ class Footer extends StatelessWidget {
                   ),
                   const SizedBox(width: 2),
                   Text(
-                    '${DateTime.now().year} Lester Manzanero. All rights reserved.',
+                    '${DateTime.now().year} Lester Manzanero. All rights reserved. Design inspired by Bryl Lim.',
                     style: TextStyle(
                       color: textColor(context),
                       fontSize: 12,

@@ -354,7 +354,7 @@ class _ContactState extends State<Contact> {
                     ),
                   ),
 
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
 
                   Row(
                     children: [
@@ -374,12 +374,14 @@ class _ContactState extends State<Contact> {
                     ],
                   ),
 
+                  
+
                   hoverLink(
                     "https://www.facebook.com/lester.manzanero",
                     "https://www.facebook.com/lester.manzanero",
                   ),
 
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 20),
 
                   Row(
                     children: [
@@ -404,15 +406,39 @@ class _ContactState extends State<Contact> {
                     "https://www.instagram.com/lj.manzanero",
                   ),
 
-                  const SizedBox(height: 70),
+                  const SizedBox(height: 20),
 
-                  Text(
-                    "Feel free to reach out.",
-                    style: TextStyle(
-                      color: muted(context),
-                      fontFamily: "Poppins",
-                    ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        '../../assets/images/linkedin.png',
+                        height: 20,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        "Linkedin:",
+                        style: TextStyle(
+                          color: t(context),
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ],
                   ),
+
+                  hoverLink(
+                    "https://www.linkedin.com/in/lester-john-m",
+                    "https://www.linkedin.com/in/lester-john-m-a3486a372?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+                  ),
+
+                  // const SizedBox(height: 70),
+
+                  // Text(
+                  //   "Feel free to reach out.",
+                  //   style: TextStyle(
+                  //     color: muted(context),
+                  //     fontFamily: "Poppins",
+                  //   ),
+                  // ),
                 ],
               ),
             ),
